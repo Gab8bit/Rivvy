@@ -1,0 +1,1 @@
+export const now = () => new Date().toLocaleString('it-IT', { timeZone: 'Europe/Rome' });
