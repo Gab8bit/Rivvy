@@ -43,7 +43,7 @@ export default {
             .addFields(
                 { name: '💬 Messaggi',    value: formatNumber(messages), inline: true },
                 { name: '🎙️ Tempo in VC', value: formatTime(vctime),     inline: true },
-                { name: '🪙 Soldi', value: formatNumber(money),     inline: true },
+                { name: '🐟 Pesci', value: formatNumber(money),     inline: true },
             )
             .setColor("#E69138")
             .setThumbnail(interaction.user.displayAvatarURL())
