@@ -21,7 +21,7 @@ const comandiembed = new EmbedBuilder()
 	.addFields(
     { name: "🖼️  /media", value: 'Invia una foto, un video o un audio da un archivio interno di file.\n\n' },
 	{ name: "🎵  /musica", value: 'Riproduce in chat vocale un file audio caricato da te.\n\n' },
-	{ name: "📊  /stats", value: 'Mostra le tue statistiche nel server.\nAccumula pesci stando in chat vocale o mandando messaggi e spendile giocando ai minigiochi!\n\n' },
+	{ name: "📊  /stats", value: 'Mostra le tue statistiche nel server.\nAccumula pesci stando in chat vocale o mandando messaggi e spendili giocando ai minigiochi!\n\n' },
 	{ name: "😂  /meme", value: 'Invia un meme o un post da un subreddit casuale o scelto da te.\n\n' },
 	{ name: "🤫  /segreto", value: 'Usa questo comando per smascherare i segreti più intimi dei tuoi amici.\n\n' },
 	{ name: "🛞  /ruota", value: 'Lascia che la fortuna scelga per te.\nDai delle opzioni e la ruota ne sceglierà una casualmente.\n\n' },
