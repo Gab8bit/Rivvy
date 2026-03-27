@@ -111,3 +111,20 @@ export async function updateUsername(userID, username){
         [username, userID, username]
     );
 }
+
+export async function getLeaderboard(maxresults, orderby){
+    const ALLOWED_COLUMNS = ['messages', 'vctime', 'money'];
+    if (!ALLOWED_COLUMNS.includes(orderby)) throw new Error('Colonna non valida');
+    const [rows] = await pool.query(`SELECT username, ${orderby} AS result FROM users ORDER BY ${orderby} DESC LIMIT ${maxresults}`);
+    return rows;
+}
+
+export async function getUserRank(userid, orderby){
+    const ALLOWED_COLUMNS = ['messages', 'vctime', 'money'];
+    if (!ALLOWED_COLUMNS.includes(orderby)) throw new Error('Colonna non valida');
+    const [rows] = await pool.query(
+        `SELECT COUNT(*) + 1 AS user_rank FROM users WHERE ${orderby} > (SELECT ${orderby} FROM users WHERE userID = ?)`,
+        [userid]
+    );
+    return rows[0].user_rank;
+}

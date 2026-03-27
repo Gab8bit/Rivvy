@@ -2,25 +2,7 @@
 import { SlashCommandBuilder, EmbedBuilder, MessageFlags } from 'discord.js';
 import { now } from '../utils/time.js';
 import { getMoney, getMessageSum, getVCtime } from '../utils/db_oper.js';
-
-function formatNumber(n) {
-    return n.toLocaleString('it-IT');
-}
-
-function formatTime(secondi) {
-    const gg  = Math.floor(secondi / 86400);
-    const hh  = Math.floor((secondi % 86400) / 3600);
-    const min = Math.floor((secondi % 3600) / 60);
-    const sec = secondi % 60;
-
-    const parti = [];
-    if (gg)  parti.push(`${gg}g`);
-    if (hh)  parti.push(`${hh}h`);
-    if (min) parti.push(`${min}m`);
-    if (sec || parti.length === 0) parti.push(`${sec}s`);
-
-    return parti.join(' ');
-}
+import { formatNumber, formatTime } from '../utils/formatting.js';
 
 export default {
     data: new SlashCommandBuilder()
