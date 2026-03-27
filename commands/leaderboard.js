@@ -20,33 +20,24 @@ export default {
 		const choice = interaction.options.get('cosa').value;
 		const user = interaction.user.id;
 		const position = await getUserRank(user, choice);
-		var text = "";
-		if(choice == "vctime"){
-			const top3 = await getLeaderboard(3, choice);
-			text = `**Classifica globale**
-			🥇 ${top3[0].username} - ${formatTime(top3[0].result)}
-			🥈 ${top3[1].username} - ${formatTime(top3[1].result)}
-			🥉 ${top3[2].username} - ${formatTime(top3[2].result)}
-			`;
-		}else if(choice == "messages"){
-			const top3 = await getLeaderboard(3, choice);
-			text = `**Classifica globale**
-			🥇 ${top3[0].username} - ${formatNumber(top3[0].result)} messaggi
-			🥈 ${top3[1].username} - ${formatNumber(top3[1].result)} messaggi
-			🥉 ${top3[2].username} - ${formatNumber(top3[2].result)} messaggi
-			`;
-		}else if(choice == "money"){
-			const top3 = await getLeaderboard(3, choice);
-			text = `**Classifica globale**
-			🥇 ${top3[0].username} - ${formatNumber(top3[0].result)} pesci
-			🥈 ${top3[1].username} - ${formatNumber(top3[1].result)} pesci
-			🥉 ${top3[2].username} - ${formatNumber(top3[2].result)} pesci
-			`;
+		const medals = ['🥇', '🥈', '🥉'];
+		const formatValue = {
+			vctime:   (r) => formatTime(r),
+			messages: (r) => `${formatNumber(r)} messaggi`,
+			money:    (r) => `${formatNumber(r)} pesci`,
+		};
+		let text = '**Classifica globale**\n';
+		if (formatValue[choice]) {
+			const top = await getLeaderboard(100, choice);
+			top.forEach((entry, i) => {
+				const prefix = medals[i] ?? `**#${i + 1}**`;
+				text += `${prefix} ${entry.username} - ${formatValue[choice](entry.result)}\n`;
+			});
 		}
 		const leaderboard = new EmbedBuilder()
-    		.setColor('#E69138')
+			.setColor('#E69138')
 			.setTitle(`Sei #${position} in classifica!`)
-			.setDescription(text)
+			.setDescription(text);
 		await interaction.reply({ embeds: [leaderboard] });
 		console.log(`[${now()} INFO] command-invoker: ${interaction.user.tag} invoked /leaderboard ${interaction.options.get('cosa').value}`);
 	},
