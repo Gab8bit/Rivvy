@@ -23,6 +23,7 @@ const comandiembed = new EmbedBuilder()
 	{ name: "🎵  /musica", value: 'Riproduce in chat vocale un file audio caricato da te.\n\n' },
 	{ name: "📊  /stats", value: 'Mostra le tue statistiche nel server.\nAccumula pesci stando in chat vocale o mandando messaggi e spendili giocando ai minigiochi!\n\n' },
 	{ name: "🏆  /classifica", value: 'Mostra la classifica globale!\n\n' },
+	{ name: "🃏  /scommetti", value: 'Scommetti i tuoi pesci!\n\n' },
 	{ name: "😂  /meme", value: 'Invia un meme o un post da un subreddit casuale o scelto da te.\n\n' },
 	{ name: "🤫  /segreto", value: 'Usa questo comando per smascherare i segreti più intimi dei tuoi amici.\n\n' },
 	{ name: "🛞  /ruota", value: 'Lascia che la fortuna scelga per te.\nDai delle opzioni e la ruota ne sceglierà una casualmente.\n\n' },
