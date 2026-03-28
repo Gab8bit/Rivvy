@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, escapeMarkdown } from 'discord.js';
 import { now } from '../utils/time.js';
 import { getLeaderboard, getUserRank } from '../utils/db_oper.js';
 import { formatNumber, formatTime } from '../utils/formatting.js';
@@ -31,7 +31,8 @@ export default {
 			const top = await getLeaderboard(100, choice);
 			top.forEach((entry, i) => {
 				const prefix = medals[i] ?? `**#${i + 1}**`;
-				text += `${prefix} ${entry.username} - ${formatValue[choice](entry.result)}\n`;
+				const username = escapeMarkdown(entry.username ?? 'Utente sconosciuto');
+				text += `${prefix} ${username} - ${formatValue[choice](entry.result)}\n`;
 			});
 		}
 		const leaderboard = new EmbedBuilder()

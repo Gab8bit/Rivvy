@@ -115,7 +115,7 @@ export async function updateUsername(userID, username){
 export async function getLeaderboard(maxresults, orderby){
     const ALLOWED_COLUMNS = ['messages', 'vctime', 'money'];
     if (!ALLOWED_COLUMNS.includes(orderby)) throw new Error('Colonna non valida');
-    const [rows] = await pool.query(`SELECT username, ${orderby} AS result FROM users ORDER BY ${orderby} DESC LIMIT ${maxresults}`);
+    const [rows] = await pool.query(`SELECT username, ${orderby} AS result FROM users WHERE ${orderby} > 0 ORDER BY ${orderby} DESC LIMIT ${maxresults}`);
     return rows;
 }
 
