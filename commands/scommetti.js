@@ -50,12 +50,12 @@ export default {
                 const response = await interaction.reply({
                     content: `**Hai scommesso ${formatNumber(bet)} pesci.**\nScegli, rosso o blu?`,
                     components: [row],
-                    withResponse: true,
+                    withResponse: true
                 });
 
                 const collectorFilter = (i) => i.user.id === user;
                 try{
-                    const confirmation = await response.resource.message.awaitMessageComponent({filter: collectorFilter, time: 10000});
+                    const confirmation = await response.resource.message.awaitMessageComponent({filter: collectorFilter, time: 30000});
                     const bot_choice = Math.floor(Math.random() * 2); // 0 = blu  1 = rosso
                     if((confirmation.customId === 'blu' && bot_choice == 0)||(confirmation.customId === 'rosso' && bot_choice == 1)){
                         updateMoney(user,bet);
