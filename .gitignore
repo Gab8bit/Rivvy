@@ -1,3 +1,4 @@
 node_modules/
 credentials.json
 start-pm2.bat
+.DS_Store
